@@ -10,9 +10,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -23,6 +26,10 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
+import static com.example.f.idi_navigation.R.id.editText1;
+import static com.example.f.idi_navigation.R.id.thing_proto;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -34,9 +41,21 @@ public class MainActivity extends AppCompatActivity
     private GoogleApiClient client;
     private MySQLiteHelper db;
 
-    private ListView list;
-    private ArrayAdapter<String> adapter;
-    private ArrayList<String> alist;
+  //  BookData bookData = new BookData(getBaseContext());
+//
+ //  private  EditText editeText_Title = (EditText)findViewById(R.id.editText1);
+  // private  EditText editText_Author = (EditText)findViewById(R.id.editText2);
+ ///  private  EditText editText_Year = (EditText)findViewById(R.id.editText3);
+  /// private  EditText editText_Publisher = (EditText)findViewById(R.id.editText4);
+ //   private  EditText editText_Category= (EditText)findViewById(R.id.editText5);
+ //   private  EditText editText_Personal_Evaluation = (EditText)findViewById(R.id.editText6);
+
+
+    CategoriaFragment categoriaFragment = new CategoriaFragment();
+    SearchFragment searchFragment = new SearchFragment();
+    AddFragment addFragment = new AddFragment();
+
+    FragmentManager manager = getSupportFragmentManager();
 
 
 
@@ -46,13 +65,12 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        manager.beginTransaction().replace(R.id.relativeLayour_fragment, this.categoriaFragment, this.categoriaFragment.getTag()).commit();
 
         db = new MySQLiteHelper(this); //object database
 
 
 
-        List_Activity l = new List_Activity();
 
 
 
@@ -75,19 +93,39 @@ public class MainActivity extends AppCompatActivity
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
 
-        BookData bookData = new BookData(this);
-        bookData.open();
-
-        List<Book> values = bookData.getAllBooks();
-
-        // use the SimpleCursorAdapter to show the
-        // elements in a ListView
-        ArrayAdapter<Book> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, values);
-        setListAdapter(adapter);
 
     }
 
+    void add_Book(){
+        Book book = new Book();
+
+   //     book.setAuthor(String.valueOf(this.editText_Author.getText()));
+      //  book.setTitle(String.valueOf(this.editeText_Title.getText()));
+      //  book.setCategory(String.valueOf(this.editText_Category.getText()));
+      //  book.setYear(Integer.valueOf(String.valueOf(this.editText_Year.getText())));
+      //  book.setPublisher(String.valueOf(this.editText_Publisher.getText()));
+      //  book.setPersonal_evaluation(String.valueOf(this.editText_Personal_Evaluation.getText()));
+
+      //  String author = String.valueOf(this.editText_Author.getText());
+     //   String title = String.valueOf(this.editeText_Title.getText());
+
+     //   bookData.createBook(author, title);
+
+    }
+
+    public void onClick(View view) {
+        @SuppressWarnings("unchecked")
+        int id = view.getId();
+        switch (view.getId()) {
+            case R.id.button3: // ADD BUTTON
+                add_Book();
+
+
+
+                break;
+
+        }
+    }
     private void setListAdapter(ArrayAdapter<Book> adapter) {
     }
 
@@ -128,44 +166,18 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-
         // Handle the camera action
         if (id == R.id.nav_category) {
 
-            Book b = new Book();
-            b.setTitle("harry potter");
-            b.setAuthor("rowling");
-            b.setPublisher("a");
-            b.setCategory("aaa");
-
-           // db.addBook(b);
-
-            ListCategoryFragment pf = new ListCategoryFragment();
-            FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.relativeLayour_fragment, pf, pf.getTag()).commit();
+         manager.beginTransaction().replace(R.id.relativeLayour_fragment, this.categoriaFragment, this.categoriaFragment.getTag()).commit();
 
         } else if (id == R.id.search_book) {
 
-
-            Context context = getApplicationContext();
-
-            int duration = Toast.LENGTH_SHORT;
-
-           // Toast toast = Toast.makeText(context, ((String.valueOf(db.getSize())) ), duration);
-           // toast.show();
-
-
-
-            SearchFragment sf = new SearchFragment();
-            FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.relativeLayour_fragment, sf, sf.getTag()).commit();
+            manager.beginTransaction().replace(R.id.relativeLayour_fragment, this.searchFragment,this.searchFragment.getTag()).commit();
 
         } else if (id == R.id.nav_add) {
 
-            AddFragment sf = new AddFragment();
-            FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.relativeLayour_fragment, sf, sf.getTag()).commit();
+            manager.beginTransaction().replace(R.id.relativeLayour_fragment, this.addFragment, this.addFragment.getTag()).commit();
 
         }
 

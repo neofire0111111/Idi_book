@@ -84,6 +84,10 @@ public class BookData {
                 + " = " + id, null);
     }
 
+    public void delete_all_Book(){
+
+    }
+
     public List<Book> getAllBooks() {
         List<Book> books = new ArrayList<>();
 
