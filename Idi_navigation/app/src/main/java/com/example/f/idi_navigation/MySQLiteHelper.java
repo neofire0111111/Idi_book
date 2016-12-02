@@ -61,7 +61,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
     }
 
- /*   public int getSize() {
+    public int getSize() {
 
             int i=0;
         // 1. build the query
@@ -79,7 +79,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         }
 
         return i;
-    }*/
+    }
    /* public List<Book> getAllBooks() {
         List <Book> books = new LinkedList<Book>() ;
 
@@ -111,7 +111,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     }*/
 
 
-   /* public void addBook(Book book){
+    public void addBook(Book book){
         Log.d("addBook", book.toString());
         // 1. get reference to writable DB
         SQLiteDatabase db = this.getWritableDatabase();
@@ -131,7 +131,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         // 4. close
         db.close();
 
-    }*/
+    }
 
 
     @Override

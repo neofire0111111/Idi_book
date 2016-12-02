@@ -41,14 +41,14 @@ public class MainActivity extends AppCompatActivity
     private GoogleApiClient client;
     private MySQLiteHelper db;
 
-  //  BookData bookData = new BookData(getBaseContext());
-//
- //  private  EditText editeText_Title = (EditText)findViewById(R.id.editText1);
-  // private  EditText editText_Author = (EditText)findViewById(R.id.editText2);
- ///  private  EditText editText_Year = (EditText)findViewById(R.id.editText3);
-  /// private  EditText editText_Publisher = (EditText)findViewById(R.id.editText4);
- //   private  EditText editText_Category= (EditText)findViewById(R.id.editText5);
- //   private  EditText editText_Personal_Evaluation = (EditText)findViewById(R.id.editText6);
+
+
+
+    public  EditText editText_Author ;
+    public  EditText editText_Year;
+    public  EditText editText_Publisher ;
+    public  EditText editText_Category;
+    public  EditText editText_Personal_Evaluation;
 
 
     CategoriaFragment categoriaFragment = new CategoriaFragment();
@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity
         db = new MySQLiteHelper(this); //object database
 
 
+        Log.d("LUNGHEZZA",String.valueOf(db.getSize()));
 
 
 
@@ -96,20 +97,69 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+
     void add_Book(){
+        EditText  editText_Year = (EditText)findViewById(R.id.editText3);
+        int n =Integer.valueOf(editText_Year.getText().toString());
+        String year = String.valueOf(n);
+        boolean flag =true;
+
+        for(int i=0;i<year.length() && flag;i++){
+            if(year.charAt(i)!='0'&&
+                    year.charAt(i)!='1' &&
+                    year.charAt(i)!='2' &&
+                    year.charAt(i)!='3' &&
+                    year.charAt(i)!='4' &&
+                    year.charAt(i)!='5' &&
+                    year.charAt(i)!='6' &&
+                    year.charAt(i)!='7' &&
+                    year.charAt(i)!='8' &&
+                    year.charAt(i)!='9'
+                    ){
+                flag = false;
+            }
+        }
+
         Book book = new Book();
+        EditText editeText_Title=(EditText)findViewById(R.id.editText1);
+        EditText  editText_Author = (EditText)findViewById(R.id.editText2);
 
-   //     book.setAuthor(String.valueOf(this.editText_Author.getText()));
-      //  book.setTitle(String.valueOf(this.editeText_Title.getText()));
-      //  book.setCategory(String.valueOf(this.editText_Category.getText()));
-      //  book.setYear(Integer.valueOf(String.valueOf(this.editText_Year.getText())));
-      //  book.setPublisher(String.valueOf(this.editText_Publisher.getText()));
-      //  book.setPersonal_evaluation(String.valueOf(this.editText_Personal_Evaluation.getText()));
+        EditText  editText_Publisher = (EditText)findViewById(R.id.editText4);
+        EditText   editText_Category= (EditText)findViewById(R.id.editText5);
+        EditText   editText_Personal_Evaluation = (EditText)findViewById(R.id.editText6);
 
-      //  String author = String.valueOf(this.editText_Author.getText());
-     //   String title = String.valueOf(this.editeText_Title.getText());
+        String va=editeText_Title.getText().toString();
 
-     //   bookData.createBook(author, title);
+        book.setTitle(editeText_Title.getText().toString());
+        book.setAuthor(editText_Author.getText().toString());
+
+        book.setYear(Integer.valueOf(editText_Year.getText().toString()));
+        book.setPublisher(editText_Publisher.getText().toString());
+        book.setCategory(editText_Category.getText().toString());
+        book.setPersonal_evaluation(editText_Personal_Evaluation.getText().toString());
+        db.addBook(book);
+        Log.d("LIBRO AGGIUNTO",va);
+
+
+        Toast.makeText(getApplicationContext(),"Book added successfully",Toast.LENGTH_SHORT).show();
+
+    }
+    void clear_fields(){
+
+        EditText editeText_Title=(EditText)findViewById(R.id.editText1);
+       EditText  editText_Author = (EditText)findViewById(R.id.editText2);
+        EditText  editText_Year = (EditText)findViewById(R.id.editText3);
+        EditText  editText_Publisher = (EditText)findViewById(R.id.editText4);
+        EditText   editText_Category= (EditText)findViewById(R.id.editText5);
+        EditText   editText_Personal_Evaluation = (EditText)findViewById(R.id.editText6);
+        editeText_Title.setText("");
+        editText_Author.setText("");
+        editText_Year.setText("");
+        editText_Publisher.setText("");
+        editText_Category.setText("");
+        editText_Personal_Evaluation.setText("");
+
+
 
     }
 
@@ -119,10 +169,15 @@ public class MainActivity extends AppCompatActivity
         switch (view.getId()) {
             case R.id.button3: // ADD BUTTON
                 add_Book();
-
-
-
+                clear_fields();
+                 break;
+            case R.id.button4:
+                clear_fields();
                 break;
+            case R.id.button2:
+                Log.d("ATTACCATO","SCHIA");
+
+
 
         }
     }

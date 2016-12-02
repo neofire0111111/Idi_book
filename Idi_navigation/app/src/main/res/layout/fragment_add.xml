@@ -12,58 +12,12 @@
 
         <EditText
             android:layout_width="200dp"
-            android:layout_height="35dp"
+            android:layout_height="50dp"
             android:inputType="textPersonName"
             android:ems="10"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:id="@+id/editText1" />
-
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="35dp"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:layout_alignBottom="@+id/textView2"
-            android:layout_alignStart="@+id/editText1"
-            android:id="@+id/editText2"
-            />
-
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="35dp"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:layout_alignBottom="@+id/textView3"
-            android:layout_alignStart="@+id/editText2"
-            android:id="@+id/editText3" />
-
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="35dp"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:layout_alignBottom="@+id/textView4"
-            android:layout_alignParentEnd="true"
-            android:id="@+id/editText4" />
-
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="35dp"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:layout_above="@+id/textView6"
-            android:layout_alignStart="@+id/editText4"
-            android:id="@+id/editText5" />
-
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="35dp"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:layout_alignBottom="@+id/textView6"
-            android:layout_alignStart="@+id/editText5"
-            android:id="@+id/editText6" />
 
         <TextView
             android:text="Title"
@@ -93,35 +47,8 @@
             android:layout_marginTop="36dp"
             android:id="@+id/textView4" />
 
-        <TextView
-            android:text="Category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_alignStart="@+id/textView4"
-            android:id="@+id/textView5" />
-
-        <TextView
-            android:text="Personal Evaluation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView5"
-            android:layout_alignStart="@+id/textView5"
-            android:layout_marginTop="54dp"
-            android:id="@+id/textView6" />
-
         <Button
-            android:text="Add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="43dp"
-            android:id="@+id/button3"
-            android:layout_below="@+id/editText6"
-            android:layout_alignParentEnd="true"
-            android:onClick="onClick"/>
-
-        <Button
-            android:text="Delete"
+            android:text="Clear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button4"
@@ -137,5 +64,82 @@
             android:id="@+id/textView2"
             android:layout_below="@+id/textView1"
             android:layout_alignStart="@+id/textView1" />
+
+        <TextView
+            android:text="Personal Evaluation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView6"
+            android:layout_above="@+id/button4"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="12dp" />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/editText5"
+            android:layout_alignBottom="@+id/textView6"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            android:text="Add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button3"
+            android:onClick="onClick"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="83dp" />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/editText4"
+            android:layout_alignBaseline="@+id/textView4"
+            android:layout_alignBottom="@+id/textView4"
+            android:layout_alignParentEnd="true" />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/editText3"
+            android:layout_alignBaseline="@+id/textView3"
+            android:layout_alignBottom="@+id/textView3"
+            android:layout_alignParentEnd="true" />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/editText2"
+            android:layout_alignBaseline="@+id/textView2"
+            android:layout_alignBottom="@+id/textView2"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:text="Category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView5"
+            android:layout_above="@+id/editText5"
+            android:layout_alignEnd="@+id/textView2"
+            android:layout_marginBottom="35dp" />
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/editText6"
+            android:layout_alignBaseline="@+id/textView5"
+            android:layout_alignBottom="@+id/textView5"
+            android:layout_alignParentEnd="true" />
     </RelativeLayout>
 </FrameLayout>
