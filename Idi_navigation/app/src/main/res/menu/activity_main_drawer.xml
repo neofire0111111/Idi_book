@@ -2,12 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
+
+    <item android:title="Main">
+      <menu>
         <item
             android:id="@+id/nav_category"
             android:title="Category List" />
         <item
             android:id="@+id/search_book"
             android:title="Search Book" />
+      </menu>
+    </item>
+
+
 
 
     </group>
@@ -23,4 +30,9 @@
                  android:title="Remove" />
         </menu>
     </item>
+
+
+
+
+
 </menu>

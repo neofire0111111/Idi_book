@@ -25,8 +25,11 @@ import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+
+import layout.AboutFragment;
 
 import static com.example.f.idi_navigation.R.id.editText1;
 import static com.example.f.idi_navigation.R.id.thing_proto;
@@ -54,6 +57,9 @@ public class MainActivity extends AppCompatActivity
     CategoriaFragment categoriaFragment = new CategoriaFragment();
     SearchFragment searchFragment = new SearchFragment();
     AddFragment addFragment = new AddFragment();
+    AboutFragment aboutFragment = new AboutFragment();
+    HelpFragment helpFragment = new HelpFragment();
+
 
     FragmentManager manager = getSupportFragmentManager();
 
@@ -176,13 +182,39 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.button2:
                 Log.d("ATTACCATO","SCHIA");
-
+                setAdapterToSearchFragment();
+                break;
+            case R.id.action_About:
+                Log.d("ABOUT","SCHIA");
+                break;
 
 
         }
     }
-    private void setListAdapter(ArrayAdapter<Book> adapter) {
+
+    private void setAdapterToSearchFragment(){
+
+        EditText editText_search =(EditText)findViewById(R.id.editText2);
+        List<Book> tmp = db.getAllBooks();
+        List<Book> values=new LinkedList<>();
+
+        String author=editText_search.getText().toString();
+        for(int i=0;i<tmp.size();i++){
+            if(tmp.get(i).getAuthor().equals(author)){
+                values.add(i,tmp.get(i));
+            }
+        }
+
+       this.searchFragment.setValues(values);
+        this.searchFragment.reInitList();
+
     }
+
+    private void setListAdapter(ArrayAdapter<Book> adapter) {
+
+    }
+
+
 
     @Override
     public void onBackPressed() {
@@ -209,8 +241,11 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_About) {
+            manager.beginTransaction().replace(R.id.relativeLayour_fragment, this.aboutFragment, this.aboutFragment.getTag()).commit();
+
+        }else if(id == R.id.action_help){
+            manager.beginTransaction().replace(R.id.relativeLayour_fragment, this.helpFragment, this.helpFragment.getTag()).commit();
         }
 
         return super.onOptionsItemSelected(item);

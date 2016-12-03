@@ -20,30 +20,64 @@ public class SearchFragment extends Fragment {
 
 
     private BookData bookData;
+    private List<Book> values;
+    private String[]items2;
+    private ListView l_view;
+   private  ArrayAdapter adapter ;
+
+    private View view_class;
+
     public SearchFragment() {
-        // Required empty public constructor
+
     }
 
+    public List<Book> getValues() {
+        return values;
+    }
 
+    public void setValues(List<Book> values) {
+        this.values = values;
+    }
+
+    public ArrayAdapter getAdapter() {
+        return adapter;
+    }
+
+    public void setAdapter(ArrayAdapter adapter) {
+        this.adapter = adapter;
+    }
+
+    public void reInitList(){
+        this.items2= new String[values.size()];
+
+        for(int i=0;i<values.size();i++){
+            this.items2[i]=values.get(i).getTitle()+" - "+values.get(i).getAuthor();
+        }
+        this.l_view = (ListView) view_class.findViewById(R.id.listView_search);
+        adapter  = new ArrayAdapter(getActivity(),android.R.layout.simple_list_item_1,items2);
+        l_view.setAdapter(adapter);
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
        View view = inflater.inflate(R.layout.fragment_search, container, false);
-
         bookData = new BookData(getContext());
         bookData.open();
-        List<Book> values = bookData.getAllBooks();
+        values = bookData.getAllBooks();
+        this.view_class=view;
 
-        String[] item2= new String[values.size()];
+          this.items2= new String[values.size()];
 
         for(int i=0;i<values.size();i++){
-            item2[i]=values.get(i).getTitle()+" "+values.get(i).getAuthor();
+           this.items2[i]=values.get(i).getTitle()+" - "+values.get(i).getAuthor();
         }
 
-        ListView l_view= (ListView) view.findViewById(R.id.listView_search);
-        ArrayAdapter adapter= new ArrayAdapter(getActivity(),android.R.layout.simple_list_item_1,item2);
+       this.l_view = (ListView) view.findViewById(R.id.listView_search);
+      adapter  = new ArrayAdapter(getActivity(),android.R.layout.simple_list_item_1,items2);
         l_view.setAdapter(adapter);
+
 
         bookData.close();
 

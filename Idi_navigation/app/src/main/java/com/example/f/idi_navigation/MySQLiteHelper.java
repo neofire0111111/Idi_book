@@ -80,7 +80,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
         return i;
     }
-   /* public List<Book> getAllBooks() {
+    public List<Book> getAllBooks() {
         List <Book> books = new LinkedList<Book>() ;
 
         // 1. build the query
@@ -108,7 +108,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
         // return books
         return books;
-    }*/
+    }
 
 
     public void addBook(Book book){
